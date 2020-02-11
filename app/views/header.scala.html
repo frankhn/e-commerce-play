@@ -1,0 +1,325 @@
+@(loggeduser: User)
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage"
+	content="images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href='@routes.Assets.at("css/bootstrap.min.css")' />
+<link rel="stylesheet" type="text/css"
+	href='@routes.Assets.at("css/style.css")' />
+<link rel="icon" href='@routes.Assets.at("images/favicon.png")'>
+<link rel="stylesheet" type="text/css"
+	href='@routes.Assets.at("css/cloudfare.4.7.0min.css")' />
+<link rel="stylesheet" type="text/css"
+	href='@routes.Assets.at("css/font-aweome-4.7.0.min.css")' />
+
+</head>
+<body>
+	<div id="flipkart-navbar">
+		<div class="container">
+			<div class="row row1">
+				<ul class="largenav pull-right">
+					@if(loggeduser.fname==null){
+					<ul class="dropdown">
+						<li class="upper-links"><a class="dropdown-toggle"
+							data-toggle="dropdown" id="signHover">Sign in</a>
+
+							<ul id="login-dp" class="dropdown-menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12">
+											<center>Login</center>
+											<br>
+											<form class="form" role="form" method="post" action="login"
+												accept-charset="UTF-8" id="login-nav">
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputEmail2">Email</label>
+													<input type="text" class="form-control" name="email"
+														placeholder="email" required>
+												</div>
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputPassword2">Password</label>
+													<input type="password" class="form-control" name="password"
+														placeholder="Password" required>
+													<div class="help-block text-right">
+														<a href="">Forget the password ?</a>
+													</div>
+												</div>
+												<div class="form-group">
+													<input type="submit" class="btn btn-primary btn-block"
+														value="sing in">
+												</div>
+												<div class="checkbox">
+													<label> <input type="checkbox"> keep me
+														logged-in
+													</label>
+												</div>
+												<div class="social-buttons">
+													<a href="#" class="btn btn-fb"><i
+														class="fa fa-facebook"></i> Facebook</a> <a href="#"
+														class="btn btn-tw"><i class="fa fa-twitter"></i>
+														Twitter</a>
+												</div>
+											</form>
+										</div>
+										<div class="bottom text-center">
+											Create Account ?<a href="#" id="joinuslink"><b> Join
+													Us</b></a>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+
+					</ul>
+
+					}else{
+					<ul class="dropdown">
+						<li class="upper-links"><a class="dropdown-toggle"
+							data-toggle="dropdown" id="signHover">@loggeduser.fname</a>
+
+							<ul id="login-dp" class="dropdown-menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="submit" class="btn btn-primary btn-block"
+													value="@loggeduser's Staffs">
+											</div>
+											<div class="social-buttons">
+												<a href="@routes.HomeController.account(loggeduser.token)"
+													class="btn btn-fb"> Account</a> <a
+													href="@routes.HomeController.logout()" class="btn btn-tw">Logout</a>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+
+					</ul>
+					}
+					<li class="upper-links"><a class="links" href="cart.jsp"><i
+							class="fa fa-shopping-cart" aria-hidden="true"></i>cart</a></li>
+					<li class="upper-links"><a class="links" href="#">help</a></li>
+					<li class="upper-links"><a class="links" href="#"> <svg
+								class="" id="svgnotification">
+								 <path
+									d="M8.037 17.546c1.487 0 2.417-.93 2.417-2.417H5.62c0 1.486.93 2.415 2.417 2.415m5.315-6.463v-2.97h-.005c-.044-3.266-1.67-5.46-4.337-5.98v-.81C9.01.622 8.436.05 7.735.05 7.033.05 6.46.624 6.46 1.325v.808c-2.667.52-4.294 2.716-4.338 5.98h-.005v2.972l-1.843 1.42v1.376h14.92v-1.375l-1.842-1.42z"
+									fill="#fff"></path> </svg>
+					</a></li>
+					<li class="upper-links dropdown"><a class="links" href="#">RWANDA</a></li>
+				</ul>
+			</div>
+			<div class="row row2">
+				<div class="col-sm-2">
+					<h2 id="edealingmobile">
+						<span class="smallnav menu" id="headermobileview" onclick="openNav()">☰ E-dealing</span>
+					</h2>
+					<h1 id="edealingdesktop">
+						<span class="largenav" id="headermobileview" >E-dealing</span>
+					</h1>
+				</div>
+				<div class="flipkart-navbar-search smallsearch col-sm-8 col-xs-11">
+					<div class="row">
+						<form class="search-bar-v2" id="ls-search-form" action="Index"
+							method="POST">
+
+							<div class="form-component input--medium input--search" id="pos">
+								<input id="search-button1" placeholder="search E-dealing">
+
+								<select name='myfield' id="search-button2">
+									<option selected></option>
+									<option>Rubavu</option>
+									<option>Kamembe</option>
+									<option>Kigali</option>
+									<option>Muhanga</option>
+									<option>Huye</option>
+								</select>
+								<noscript>
+									<input type="submit" name="search-submit-form" value="Submit">
+								</noscript>
+								<script>
+								
+								
+								</script>
+								<button id="search-submit-button" type="submit"
+									name="search-submit-form" class="btn">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="cart largenav col-sm-2">
+					<a class="cart-button" id="startdealingbutton"><strong>Start
+							Dealing</strong></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="mySidenav" class="sidenav">
+		<div class="container">
+			<span class="sidenav-heading">E-dealing</span> <a
+				href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		</div>
+		<a href="#">my wishlist</a> <a href="#">cart</a> <a href="#">help</a>
+		<a href="#">Link</a>
+	</div>
+
+	<!-- menu
+
+	<div class="topnav" id="myTopnav">
+		<a id="ft" href="#home">featured</a> 
+		<a class="ft" href="#">local</a>
+		<a class="ft" href="#">Goods</a>
+		 <a class="ft" href="#">Travels</a> 
+		 <a class="ft" href="#">Housing</a> 
+		 <a class="ft" href="#">Used Products</a>
+		  <a class="ft" href="#">Best sellers</a> 
+		  <a href="javascript:void(0);" class="icon" onclick="myFunction()"> <i class="fa fa-bars"></i></a>
+	</div>-->
+	<div class="container">
+		<div class="row">
+			<nav class="navbar navbar-default" role="navigation" id="featurednav">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse js-navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav" id="ulfeaturednav">
+							<li><a href="#" id="featuredlinknav">Featured</a></li>
+							<li class="dropdown mega-dropdown" id="localdropdownlinkfeatured"><a
+								href="#" class="dropdown-toggle" data-toggle="dropdown">Local</a>
+								<ul class="dropdown-menu mega-dropdown-menu"
+									id="dropdownlocalfeatured">
+									<li class="col-md-3">
+										<ul>
+
+											<li class="dropdown-header" style="color: #53A318">Personal</li>
+											<li><a href="browse.jsp?c=automotive">Automotive</a></li>
+											<li><a href="browse.jsp?c=beauty+spas">Beauty & spas</a></li>
+											<li><a href="#browse.jsp?c=food+drinks">Food &
+													Drinks</a></li>
+											<li><a href="browse.jsp?c=health+fitness">Health &
+													Fitness</a></li>
+											<li class="divider"></li>
+											<li class="dropdown-header" style="color: #53A318">Home</li>
+											<li><a href="#">Home services</a></li>
+											<li><a href="#">Entertainment</a></li>
+										</ul>
+									</li>
+
+
+									<li class="col-md-3">
+										<ul>
+											<li class="dropdown-header" style="color: #53A318">All
+												Deals</li>
+											<li><a href="#">Auto Carousel</a></li>
+											<li><a href="#">Carousel Control</a></li>
+											<li><a href="#">Left & Right Navigation</a></li>
+											<li><a href="#">Four Columns Grid</a></li>
+											<li class="divider"></li>
+											<li class="dropdown-header" style="color: #53A318">Fonts</li>
+											<li><a href="#">Glyphicon</a></li>
+											<li><a href="#">Google Fonts</a></li>
+										</ul>
+									</li>
+									<li class="col-md-3">
+										<ul>
+											<li class="dropdown-header">All Deals</li>
+											<li><a href="#">Auto Carousel</a></li>
+											<li><a href="#">Carousel Control</a></li>
+											<li><a href="#">Left & Right Navigation</a></li>
+											<li><a href="#">Four Columns Grid</a></li>
+											<li class="divider"></li>
+											<li class="dropdown-header">Fonts</li>
+											<li><a href="#">Glyphicon</a></li>
+											<li><a href="#">Google Fonts</a></li>
+										</ul>
+									</li>
+									<li class="col-md-3">
+										<ul>
+											<li class="dropdown-header">All Deals</li>
+											<li><a href="#">Auto Carousel</a></li>
+											<li><a href="#">Carousel Control</a></li>
+											<li><a href="#">Left & Right Navigation</a></li>
+											<li><a href="#">Four Columns Grid</a></li>
+											<li class="divider"></li>
+											<li class="dropdown-header">Fonts</li>
+											<li><a href="#">Glyphicon</a></li>
+											<li><a href="#">Google Fonts</a></li>
+										</ul>
+									</li>
+								</ul></li>
+							<li class="dropdown" style="padding-left: 55px;"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">Goods</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+									<li class="divider"></li>
+									<li><a href="#">One more separated link</a></li>
+								</ul></li>
+							<li style="padding-left: 55px;"><a href="#">Used
+									Products</a></li>
+							<li class="dropdown" style="padding-left: 55px;"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">Gateways</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="browse.jsp?c=travel">Travel
+											Destinations(indege,bus,tax)</a></li>
+									<li><a href="browse.jsp?c=gateways">Gateways
+											(hotels,logde,motels in the current city)</a></li>
+									<li><a href="browse.jsp?c=tourist">Tourist attractions
+											and transportations services</a></li>
+									<li class="divider"></li>
+									<li><a href="rent">Renting and Apartments</a></li>
+								</ul></li>
+							<li class="dropdown" style="padding-left: 55px;"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">Events</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+									<li class="divider"></li>
+									<li><a href="#">One more separated link</a></li>
+								</ul></li>
+							<li class="dropdown" style="padding-left: 60px;"><a
+								href="browse.jsp?c=today">Today's Deals</a>
+							<!-- class="dropdown-toggle"--> <!-- <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>--></li>
+							<li style="padding-left: 55px;"><a
+								href="browse.jsp?c=bestsellers">Best Sellers</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+		</div>
+	</div>
+
+	<script src='@routes.Assets.at("js/jquery-1.11.1.min.js")'></script>
+	<script src='@routes.Assets.at("bootstrap.min.js")'></script>
+
+	<script src="http://typeahead.js"></script>
+	<script src="asset/nprogress/nprogress.js"></script>
+	<script type="text/javascript">
+	NProgress.start();
+	NProgress.done();
+</script>
+
+</body>
+</html>

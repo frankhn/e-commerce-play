@@ -1,0 +1,359 @@
+@(country: List[Country], user: User, allcity: List[City], alllocation: List[Location], bnssc: List[BusinessCategory], getBusiness: Business)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Get Started</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage"
+	content="images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href='@routes.Assets.at("images/favicon.png")'>
+<link rel="stylesheet" type="text/css"
+	href='@routes.Assets.at("css/bootstrap4.css")' />
+<link rel="stylesheet" type="text/css"
+	href='@routes.Assets.at("css/getstarted.css")' />
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body >
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" id="navbarbrandname" href="#"><strong>Comdeni Merchants</strong></a>
+  <button class="navbar-toggler" id="menubutton" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <!-- class="mx-auto" for centering an element bootstrap-->
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="navbarDropdown">Solutions</a>
+      </li>
+	  
+	  <li class="nav-item">
+        <a class="nav-link" href="#" id="navbarDropdown">Resources</a>
+      </li>
+	  
+	  <li class="nav-item">
+        <a class="nav-link" href="#" id="navbarDropdown">Stories</a>
+      </li>
+    </ul>
+      @if(user==null){
+      <a class="btn" id="signin" href='@routes.HomeController.registration()' >sign in</a>
+      }else if(getBusiness!=null) {
+      	<button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="getstarted">Log To @getBusiness.name Center</button>
+      }else {
+      <button class="btn btn-outline-light my-2 my-sm-0" onclick="Bform()" type="submit" id="getstarted">Get Started</button>
+      }
+  </div>
+
+
+</nav>
+<div class="container" id="bformactive">
+<div class="row">
+<div class="welcometext" >
+<center><h2><strong>How can we help your business?</strong></h2>
+<p id="metchantco">We're glad you're here! With more than a million local businesses on our platform to date, 
+we understand how to help you increase your revenue, lower your costs, and grow your business. Build your deal today.</p>
+
+<h4 id="solution">Great Solutions from our recent Business Eagles </h4>
+</center>
+</div>
+</div>
+</div>
+
+<div class="container" id="bformactive2">
+<div class="row" >
+
+<div class="col-md-3 col-sm-6 col-xs-12">
+<img id="sol" src='@routes.Assets.at("images/banner.jpg")' >
+</div>
+
+<div class="col-md-3 col-sm-6 col-xs-12">
+<img id="sol" src='@routes.Assets.at("images/fff.png")' >
+</div>
+
+<div class="col-md-3 col-sm-6 col-xs-12">
+<img id="sol" src='@routes.Assets.at("images/banner.jpg")' >
+</div>
+
+<div class="col-md-3 col-sm-6 col-xs-12">
+<img id="sol" src='@routes.Assets.at("images/bck.jpg")' >
+</div>
+
+</div>
+</div>
+
+<div class="container" >
+<div class="row">
+
+<form id="regForm"  method="POST" action="startbusiness">
+ 
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab" id="firsttab"> 
+  <h2>We are glad for You taking a great step to grow your Business and reach as much clients 
+  as possible</h2>
+    <p><div class="form-group">
+
+
+            <input type="text" name="name" class="form-control" id="inputEmail" placeholder=" Business Name" >
+
+        </div></p>
+        <p><div class="form-group">
+			@if(user!=null){
+            <input type="hidden" name="user_id" value="@user.id" >
+			}
+        </div></p>
+    <p><div class="form-group">
+
+
+            <select type="text" name="country" class="form-control" id="inputEmail" placeholder=" Business Country Base" >
+            @for(cou <- country){
+            <option value="@cou.id">@cou.name</option>
+            }
+            </select>
+
+        </div></p>
+        
+     <p><div class="form-group">
+
+
+            <select type="text" name="city" class="form-control" id="inputEmail"  >
+			 @for(ci <- allcity){
+            <option value="@ci.id">@ci.name</option>
+            }
+			</select>
+        </div></p> 
+        
+        <p>
+    <div class="form-group">
+    
+    <select class="form-control" id="inputEmail" oninput="this.className = ''" name="location">
+      @for(lc <- alllocation){
+            <option value="@lc.id">@lc.name</option>
+            }
+     </select>
+     </div>
+     </p>
+        
+        <p><div class="form-group">
+            <select type="text" name="businesscategory" class="form-control" id="inputEmail"   >
+			 @for(bc <- bnssc){
+            <option value="@bc.id">@bc.name</option>
+            }
+			</select>
+        </div></p>  
+  </div>
+  <div class="tab">
+    <p><div class="form-group">
+    <h2>Is Your Business Legally working</h2>
+    <select  type="text" class="form-control" id="inputEmail" 
+    oninput="this.className = ''" name="legal_status">
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+    </select>
+    </div></p>
+    <h2>Contact Information</h2>
+    <p><div class="form-group">
+    <input type="number" class="form-control" id="inputEmail" placeholder="phone number like 0781666092" oninput="this.className = ''" name="Phone1">
+    </div>
+    </p>
+  </div>
+  
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
+
+</div>
+</div>
+
+<footer class="footer">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="container">
+	<div class="row">
+	<div class="markt col-md-3 col-sm-6 col-xs-12">
+	
+	<ul >
+		<h5>Marketing By Business Type</h5>
+		
+		<li><a href="#">Food Stores & Restaurant</a></li>
+		<li><a href="#">Health, Bank Services</a></li>
+		<li><a href="#">Things To Do</a></li>
+		<li><a href="#">Shops And Boutiques</a></li>
+		<li><a href="#">Learning And Events</a></li>
+	</ul>
+	</div>
+	<div class="markt col-md-3 col-sm-6 col-xs-12">
+	
+	<ul>
+	
+		<h5>Marketing Solutions</h5>
+		
+		<li><a href="#">Market Reach</a></li>
+		<li><a href="#">Marketing Strategies</a></li>
+		<li><a href="#">E-Dealing Open Day</a></li>
+	</ul>
+	</div>
+
+	<div class="markt col-md-3 col-sm-6 col-xs-12">
+	<ul>
+		<h5>Resources</h5>
+		<li><a href="#">Merchant Stories</a></li>
+		<li><a href="#">Event Driven</a></li>
+		<li><a href="#">FAQ</a></li>
+		<li><a href="#">Refund Policy</a></li>
+		<li><a href="#">Your Right To Know</a></li>
+	</ul>
+	</div>
+	
+	<div class="markt col-md-3 col-sm-6 col-xs-12">
+	<ul>
+		<h5>More</h5>
+		<li><a href="#">Hot line</a></li>
+		<li><a href="#">Merchant Newsroom</a></li>
+		<li><a href="#">Careers</a></li>
+		<li><a href="#">Investor Relation</a></li>
+		<li><a href="#">Terms of Use</a></li>
+		<li><a href="#">Privacy</a></li>
+	</ul>
+	</div>
+	
+		<div class="endfooter">
+<center><h6>Wondering about how to get Your self In Today's Business Environment?</h6>
+<p id="endtext">You've reached a great solution, camdens is Your Great Choise separate Your self from traditional Ways of Doing Business 
+and Go with us in a modern Business, read More about the recent <a href="#"><u>Camdens eagles.</u></a></p>
+
+</center>
+</div>
+</div>
+</div>
+	</div>
+	</div>
+	</footer>
+<script type="text/javascript">
+function Bform(){
+	document.getElementById("bformactive").style.display = "none";
+	document.getElementById("bformactive2").style.display = "none";
+	document.body.style.background = "rgba(240, 234, 234, 0.44)";
+	document.getElementById("regForm").style.display = "block";
+}
+
+</script>
+
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the crurrent tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+	
+<script type="text/javascript">
+$(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+
+// breakpoint and up  
+$(window).resize(function(){
+	if ($(window).width() >= 980){	
+
+      // when you hover a toggle show its dropdown menu
+      $(".navbar .dropdown-toggle").hover(function () {
+         $(this).parent().toggleClass("show");
+         $(this).parent().find(".dropdown-menu").toggleClass("show"); 
+       });
+
+        // hide the menu when the mouse leaves the dropdown
+      $( ".navbar .dropdown-menu" ).mouseleave(function() {
+        $(this).removeClass("show");  
+      });
+  
+		// do something here
+	}	
+});  
+// document ready  
+});
+</script>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

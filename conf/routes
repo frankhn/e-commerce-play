@@ -1,0 +1,120 @@
+	# Routes
+	# This file defines all application routes (Higher priority routes first)
+	# ~~~~
+	# Map static resources from the /public folder to the /assets URL path
+	+ nocsrf
+	GET     /assets/*file              	controllers.Assets.at(path="/public", file)
+	
+	# Default path will just redirect to the product list
+	GET     /     	                 	controllers.HomeController.index()
+	
+	#redirested to products page
+	GET     /feed                  		controllers.HomeController.feed()
+	
+	#about
+	+ nocsrf
+	GET     /intl/rvl/:cnt                    controllers.PageController.about(cnt: String)
+	
+	#newsroom
+	GET     /newsroom                    controllers.PageController.newsroom()
+	
+	#customer service
+	GET     /customer-service           controllers.PageController.customerService()
+	
+	#community
+	GET     /community             controllers.PageController.community()
+	
+	#policies
+	GET     /terms-of-use             controllers.PageController.policies()
+	
+	# Add product
+	GET     /products/new          	 	controllers.HomeController.create()
+	
+	
+	#show product
+	+ nocsrf
+	GET    /deals/:name/:id             controllers.HomeController.show(name:String, id: Long)
+	
+	# Edit existing products
+	#GET     /computers/:id            	controllers.HomeController.edit(id:Long)
+	#POST    /computers/:id            	controllers.HomeController.update(id:Long)
+	
+		
+	#browse for categories pass current city and category name
+	+ nocsrf
+	GET    /browse/:city/:category      controllers.BrowseController.browse(city: String,category: String)
+	
+	+ nocsrf
+	GET    /browse/:city/:category/:location   controllers.BrowseController.browselocation(city:String,category: String,location: String)
+	
+	+ nocsrf
+	GET    /gateways/:destination          controllers.BrowseController.gateways(destination: String)
+	+ nocsrf
+	GET    /:city/:department                 controllers.BrowseController.city(city: String,department: String)
+	+ nocsrf
+	GET    /learning                    controllers.BrowseController.learning()
+	+ nocsrf
+	GET    /sporting                 controllers.BrowseController.sporting()
+	+ nocsrf
+	GET    /salon                       controllers.BrowseController.salon()                       
+	+ nocsrf
+	GET    /supplier                    controllers.BrowseController.supplier()
+	+ nocsrf
+	GET    /foodsmarket                 controllers.BrowseController.foodsmarket()
+	+ nocsrf
+	GET    /music                       controllers.BrowseController.music()
+	+ nocsrf
+	GET    /cinema                      controllers.BrowseController.cinema()
+	
+	+ nocsrf
+	GET    /getstarted                  controllers.GetstartedController.getstarted()
+	
+	+ nocsrf
+	POST   /startbusiness               controllers.GetstartedController.startbusiness()
+		
+	# Delete a product
+	#POST    /computers/:id/delete     	controllers.HomeController.delete(id:Long)
+	
+	#user registration and login
+	GET       /register                 controllers.HomeController.registration()
+	
+	+ nocsrf
+	POST     /login    					controllers.HomeController.login()
+	
+	+ nocsrf
+	GET    /search                      controllers.SearchController.search(word?="", city ?="")
+	
+	+ nocsrf
+	POST    /setCity                    controllers.SportController.setCity()
+	
+	+ nocsrf
+	POST  /setSportCategory           controllers.SportController.setSportCategory()
+	
+	
+	+ nocsrf
+	GET	/logout                       	controllers.HomeController.logout()
+	
+	+ nocsrf
+	POST     /signup              		controllers.HomeController.signup()
+	
+	+ nocsrf
+	POST     /requestregistration              		controllers.UserController.activationlink()
+	
+	#check activation link
+	+nocsrf
+	GET      /activateaccount/user/me/:code   controllers.UserController.confirmactvation(code:String)
+	
+	
+	#user profile
+	+ nocrf
+	GET     /business/registration/:id    controllers.UserController.businessregistration(id: Long)
+	
+	
+	+ nocsrf
+	GET     /:username     			controllers.HomeController.account(username:String)
+	
+	
+	# Computers list (look at the default values for pagination parameters)
+	#GET     /computers                	controllers.HomeController.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
+	
+	
